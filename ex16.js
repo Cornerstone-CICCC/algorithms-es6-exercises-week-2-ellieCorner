@@ -15,8 +15,77 @@ For more information on casing styles, read Wikipedia's Special Case Styles for 
 
 */
 
+const makeCamel = (word) => {
+  let result = word
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join("");
+
+  return result.charAt(0).toLowerCase() + result.slice(1);
+};
+const makePascal = (word) => {
+  return word
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join("");
+};
+const makeSnake = (word) => {
+  return word.split(" ").join("_");
+};
+const makeKebab = (word) => {
+  return word.split(" ").join("-");
+};
+const makeTitle = (word) => {
+  return word
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
+const makeVowel = (word) => {
+  return word
+    .split("")
+    .map((char) =>
+      "aeiou".includes(char) ? char.toUpperCase() : char.toLowerCase()
+    )
+    .join("");
+};
+const makeConsonant = (word) => {
+  return word
+    .split("")
+    .map((char) =>
+      "bcdfghjklmnpqrstvwxyz".includes(char)
+        ? char.toUpperCase()
+        : char.toLowerCase()
+    )
+    .join("");
+};
+
 const makeCaze = function (input, caze) {
-  // Put your solution here
+  let finalCaze = caze;
+
+  if (Array.isArray(caze)) {
+    if (caze[0] === "upper") input = input.toUpperCase();
+    else input = input.toLowerCase();
+
+    finalCaze = caze[1];
+  }
+
+  switch (finalCaze) {
+    case "camel":
+      return makeCamel(input);
+    case "pascal":
+      return makePascal(input);
+    case "snake":
+      return makeSnake(input);
+    case "kebab":
+      return makeKebab(input);
+    case "title":
+      return makeTitle(input);
+    case "vowel":
+      return makeVowel(input);
+    case "consonant":
+      return makeConsonant(input);
+  }
 };
 
 console.log(makeCaze("this is a string", "camel")); // thisIsAString

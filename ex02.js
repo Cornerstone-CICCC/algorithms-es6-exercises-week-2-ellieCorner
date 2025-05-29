@@ -7,7 +7,12 @@ Create a function named conditionalSum that will be given an array of numbers an
 */
 
 const conditionalSum = function (values, condition) {
-  // Your code here
+  if (!(condition === "even" || condition === "odd")) return;
+
+  if (condition === "even") {
+    return values.filter((value) => value % 2 === 0).reduce((a, b) => a + b, 0);
+  }
+  return values.filter((value) => value % 2 === 1).reduce((a, b) => a + b, 0);
 };
 
 console.log(conditionalSum([1, 2, 3, 4, 5], "even")); // 6
