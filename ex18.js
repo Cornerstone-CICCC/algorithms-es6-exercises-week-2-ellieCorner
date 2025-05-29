@@ -23,7 +23,23 @@ Create a function named squareCode that will receive a message, and return the s
 */
 
 const squareCode = function (message) {
-  // Put your solution here
+  const removedSpace = message.trim().split(" ").join("");
+
+  const colum = Math.ceil(Math.sqrt(removedSpace.length));
+
+  const rows = [];
+  for (let i = 0; i < removedSpace.length - 1; i += colum) {
+    rows.push(removedSpace.slice(i, i + colum));
+  }
+
+  const result = Array.from({ length: colum }, () => []);
+  for (let i = 0; i < rows.length; i++) {
+    for (let c = 0; c < colum; c++) {
+      result[c].push(rows[i][c]);
+    }
+  }
+
+  return result.map((item) => item.join("")).join(" ");
 };
 
 console.log(squareCode("chill out")); // clu hlt io
